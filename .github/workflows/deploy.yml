@@ -7,6 +7,8 @@ on:
 jobs:
   test:
     environment: testing
+    env:
+      MY_SECRET_KEY:  ${{ secrets.MY_SECRET_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -15,7 +17,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+          key: "npm-deps-${{ hashFiles('**/package-lock.json') }}"
       - name: Install dependencies
         run: npm ci
       #- name: Run server
@@ -23,7 +25,9 @@ jobs:
       #- name: Run tests
         #run: npm test
       - name: Output information
-        run: echo "MY ENV: ${{ secrets.MY_SECRET_ENV}}"
+        run: echo hello my env $MY_ENV
+      - name: Output info 2
+        run: echo hello my secret env is ${{ secrets.MY_SECRET_ENV }}
   #deploy:
    # needs: test
     #runs-on: ubuntu-latest
