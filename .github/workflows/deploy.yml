@@ -22,6 +22,6 @@ jobs:
           name: files
           path: tmp
       - name: Deploy
-        uses: ./.github/workflows/reusable.yaml
+        uses: ./.github/workflows/reusable.yml
         with:
           artifact-name: tmp
