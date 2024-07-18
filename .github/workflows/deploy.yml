@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
-      - name ls code
+      - name: ls code
         run: ls -al
       - name: save temp artifact
         run: "mkdir tmp; echo 'hello world' > tmp/hello.txt"
