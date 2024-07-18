@@ -23,7 +23,7 @@ jobs:
       #- name: Run tests
         #run: npm test
       - name: Output information
-        run: echo "MY ENV: ${{ secrets.MY_SECRET_ENV}"
+        run: echo "MY ENV: ${{ secrets.MY_SECRET_ENV}}"
   #deploy:
    # needs: test
     #runs-on: ubuntu-latest
