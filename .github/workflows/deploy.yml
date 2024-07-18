@@ -9,7 +9,7 @@ jobs:
     environment: testing
     env:
       MY_SECRET_KEY:  ${{ secrets.MY_SECRET_KEY }}
-      MY_ENV: ${{ env.MY_ENV }}
+      MY_ENV: ${{ vars.MY_ENV }}
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.step1.outputs.test }}
