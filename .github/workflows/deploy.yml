@@ -22,7 +22,7 @@ jobs:
             -H 'content-type: application/json' \
             -d '{
               "labels": ["bug"]
-             }'\
+             }' \
              --fail
 
       #- name: Get code
