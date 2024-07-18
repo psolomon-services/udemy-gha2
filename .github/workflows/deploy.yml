@@ -17,11 +17,10 @@ jobs:
         if: contains(github.event.issue.title, 'bug')
         run: |
           curl -X POST \
-            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+            --url https://api.github.com/repos/psolomon-services/udemy-gha2/issues/${{ github.event.issue.number }}/labels \
             -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            -H 'content-type: application/json' \
-            -d '{"labels": ["bug"]}' 
-
+            -H 'Content-type: application/json' \
+            -d '{"labels": ["bug"]}'
   #deploy:
   #  needs: build
   #  uses: ./.github/workflows/reusable.yaml
