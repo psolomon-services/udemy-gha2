@@ -19,12 +19,12 @@ jobs:
       - name: ls code
         run: ls -alR
       - name: save temp artifact
-        run: "mkdir tmp; echo 'hello world' > tmp/hello.txt"
+        run: "mkdir ./tmp; echo 'hello world' > tmp/hello.txt"
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: files
-          path: tmp
+          path: ./tmp
       - name: Deploy
         uses: ./.github/workflows/reusable.yaml
         with:
