@@ -22,8 +22,8 @@ jobs:
             -H 'content-type: application/json' \
             -d '{
               "labels": ["bug"]
-             }' \
-             --fail
+             }' 
+             #--fail
 
       #- name: Get code
       #  uses: actions/checkout@v4
