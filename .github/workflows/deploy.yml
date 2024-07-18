@@ -22,8 +22,6 @@ jobs:
 
   deploy:
     needs: build
-    environment: testing
-    runs-on: ubuntu-latest  # ubuntu-latest
     uses: ./.github/workflows/reusable.yaml
       with:
         artifact-name: files
