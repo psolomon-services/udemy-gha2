@@ -1,22 +1,20 @@
 name: Deployment
 on:
-  push:
-    branches:
-      - main
-      - dev
+  workflow-dispatch:
+  #push:
+  #  branches:
+  #    - main
+  #    - dev
 jobs:
   job1:
     environment: testing
-    strategy:
-      matrix:
-        node-version: [ 16, 18 ]
-        os: [ ubuntu-22.04, ubuntu-20.04 ]
-    env:
-      MY_SECRET_KEY:  ${{ secrets.MY_SECRET_KEY }}
-      MY_ENV: ${{ vars.MY_ENV }}
-    runs-on: ${{ matrix.os }}  # ubuntu-latest
+    #strategy:
+      #matrix:
+      #  node-version: [ 16, 18 ]
+      #  os: [ ubuntu-22.04, ubuntu-20.04 ]
+    runs-on: ubuntu-latest  # ubuntu-latest
     steps:
-      - name: install node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Deploy
+        uses: ./workflows/reuse.yaml
         with:
-          node-version: ${{ matrix.node-version }}
+          art: ${{ matrix.node-version }}
