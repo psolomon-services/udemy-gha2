@@ -1,27 +1,43 @@
 name: Deployment
 on:
-  workflow_dispatch:
+  issues:
+    types:
+      - opened
+  #workflow_dispatch:
   #push:
   #  branches:
   #    - main
   #    - dev
+
 jobs:
   build:
     steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: ls code
-        run: ls -alR
-      - name: save temp artifact
-        run: "mkdir ./tmp; echo 'hello world' > tmp/hello.txt"
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: files
-          path: ./tmp
+      - name: Assign label
+        if: contains(github.event.issue.title, 'bug')
+        run: |
+          curl -X POST \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+            -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'content-type: application/json' \
+            -d '{
+              "labels": ["bug"]
+             }'\
+             --fail
 
-  deploy:
-    needs: build
-    uses: ./.github/workflows/reusable.yaml
-      with:
-        artifact-name: files
+      #- name: Get code
+      #  uses: actions/checkout@v4
+      #- name: ls code
+      #  run: ls -alR
+      #- name: save temp artifact
+      #  run: "mkdir ./tmp; echo 'hello world' > tmp/hello.txt"
+      #- name: Upload artifacts
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: files
+      #    path: ./tmp
+
+  #deploy:
+  #  needs: build
+  #  uses: ./.github/workflows/reusable.yaml
+  #    with:
+  #      artifact-name: files
