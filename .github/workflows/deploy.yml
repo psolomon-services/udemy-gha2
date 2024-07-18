@@ -6,13 +6,7 @@ on:
   #    - main
   #    - dev
 jobs:
-  job1:
-    environment: testing
-    #strategy:
-      #matrix:
-      #  node-version: [ 16, 18 ]
-      #  os: [ ubuntu-22.04, ubuntu-20.04 ]
-    runs-on: ubuntu-latest  # ubuntu-latest
+  build:
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -25,7 +19,11 @@ jobs:
         with:
           name: files
           path: ./tmp
-      - name: Deploy
-        uses: "./.github/workflows/reusable.yaml"
-        with:
-          artifact-name: "files"
+
+  deploy:
+    needs: build
+    environment: testing
+    runs-on: ubuntu-latest  # ubuntu-latest
+    uses: ./.github/workflows/reusable.yaml
+      with:
+        artifact-name: files
