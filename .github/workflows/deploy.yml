@@ -10,6 +10,8 @@ jobs:
     env:
       MY_SECRET_KEY:  ${{ secrets.MY_SECRET_KEY }}
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get Code
         uses: actions/checkout@v3
@@ -24,14 +26,16 @@ jobs:
         #run: npm start & npx wait-on http://127.0.0.1:XYZ
       #- name: Run tests
         #run: npm test
+      - name: set script-file output
+        id: publish
+        run: echo '::set-output name=script-file::my-script-file.sh'
       - name: Output information
         run: echo hello my env $MY_ENV
       - name: Output info 2
         run: echo hello my secret env is ${{ secrets.MY_SECRET_ENV }}
-  #deploy:
-   # needs: test
-    #runs-on: ubuntu-latest
-    #steps:
-      #- name: Output information
-        #run: |        
-          #echo "..."
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information for script-file
+        run: echo "${{ needs.build.outputs.script-file }}"
