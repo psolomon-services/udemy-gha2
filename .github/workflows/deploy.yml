@@ -16,7 +16,7 @@ jobs:
       MY_ENV: ${{ vars.MY_ENV }}
     runs-on: ${{ matrix.os }}  # ubuntu-latest
     steps:
-      - name: install node ${{ node-version }}
+      - name: install node ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
