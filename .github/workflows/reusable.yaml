@@ -2,7 +2,7 @@ name: Reusable Deploy
 on:
   workflow_call:
     inputs:
-      files:
+      artifact-name:
         description: files to get
         required: false
         default: myfiles
@@ -17,7 +17,7 @@ jobs:
         - name: Get code
           uses: actions/download-artifact@v3
           with:
-            name: ${{ inputs.files }}
+            name: ${{ inputs.artifact-name }}
         - name: List files
           run: ls
         
