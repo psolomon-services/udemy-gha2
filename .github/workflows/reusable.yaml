@@ -1,11 +1,12 @@
 name: Reusable Deploy
 on:
   workflow_call:
-    inputs:  files:
-      description: files to get
-      required: false
-      default: myfiles
-      type: string
+    inputs:
+      files:
+        description: files to get
+        required: false
+        default: myfiles
+        type: string
     #secrets:
     #  my-secret:
     #  required: true
