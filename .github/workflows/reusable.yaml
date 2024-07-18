@@ -9,8 +9,8 @@ on:
         type: string
     #secrets:
     #  my-secret:
-    #  required: true
-  jobs:
+    #  required: true    
+jobs:
     deploy:
       runs-on: ubuntu-latest
       steps:
