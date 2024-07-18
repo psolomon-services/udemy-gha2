@@ -9,15 +9,20 @@ jobs:
     environment: testing
     env:
       MY_SECRET_KEY:  ${{ secrets.MY_SECRET_KEY }}
+      MY_ENV: ${{ env.MY_ENV }}
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
-      - id: step1
+      - name: echo1
+        id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
-      - id: step2
+      - name: echo2
+        id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
+      - name: echo my env
+        run: echo $MY_ENV
   job2:
     runs-on: ubuntu-latest
     needs: job1
