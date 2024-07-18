@@ -23,7 +23,6 @@ jobs:
             -d '{
               "labels": ["bug"]
              }' 
-             #--fail
 
       #- name: Get code
       #  uses: actions/checkout@v4
