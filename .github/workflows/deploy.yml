@@ -28,7 +28,9 @@ jobs:
         #run: npm test
       - name: set script-file output
         id: publish
-        run: echo '::set-output name=script-file::my-script-file.sh'
+        #run: echo '::set-output name=script-file::my-script-file.sh'
+        #run: echo "::set-output name={script-file}::{my-script-file.sh}"
+        run: echo "script-file=my-script-file.sh" >> "$GITHUB_OUTPUT"
       - name: Output information
         run: echo hello my env $MY_ENV
       - name: Output info 2
