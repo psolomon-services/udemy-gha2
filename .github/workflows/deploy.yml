@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest  # ubuntu-latest
     steps:
       - name: save temp artifact
-        run: "mkdir tmp; echo "hello world" > tmp/hello.txt
+        run: "mkdir tmp; echo 'hello world' > tmp/hello.txt"
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
